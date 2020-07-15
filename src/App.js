@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './trivia.png';
 import './App.css';
-import { getQuestions, getToken } from './service/index';
 
 export default class App extends React.Component {
   render() {
