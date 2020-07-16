@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getLogin, fetchData } from '../redux/actions/index';
+import { getToken } from '../service';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -12,6 +14,11 @@ class HomePage extends React.Component {
 
     this.handleEmail = this.handleEmail.bind(this);
     this.handleNome = this.handleNome.bind(this);
+    this.storeToken = this.storeToken.bind(this);
+  }
+  
+  storeToken = () => {
+    getToken().then(token => localStorage.token = token)
   }
 
   handleEmail = (event) => {
@@ -56,16 +63,20 @@ class HomePage extends React.Component {
         </div>
         <div>
           <button
+            disabled={(!this.state.gravatarEmail || !this.state.name)}
+            id="btn-play"
             data-testid="btn-play"
             onClick={(event) => {event.preventDefault()
               getLogin1(this.state.gravatarEmail, this.state.name)
-              fetchData1()}}
+              fetchData1()
+              getToken()
+              this.storeToken()}}
           >
             JOGAR!
           </button>
         </div>
         <div>
-          <button data-testid="btn-settings">Cofigurações</button>
+          <Link to="/configucao" data-testid="btn-settings">Cofigurações</Link>
         </div>
       </form>
     );
@@ -79,6 +90,3 @@ const maDispacthToProps = (dispatch) => ({
 
 
 export default connect(null, maDispacthToProps)(HomePage);
-
-// export default connect(null, {getLogin, fetchData})(HomePage);
-
