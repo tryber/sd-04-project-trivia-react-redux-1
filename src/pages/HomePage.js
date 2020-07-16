@@ -37,47 +37,28 @@ class HomePage extends React.Component {
     const { getLogin1, fetchData1 } = this.props;
     return (
       <form>
-        <div>
           <label>
             Email do Gravatar:
-            <input
-              value={this.state.gravatarEmail}
-              onChange={this.handleEmail}
-              type="email"
-              data-testid="input-gravatar-email"
-              required
+            <input value={this.state.gravatarEmail} onChange={this.handleEmail}
+              type="email" data-testid="input-gravatar-email" required
             />
           </label>
-        </div>
-        <div>
           <label>
             Nome do Jogador:
-            <input
-              value={this.state.name}
-              onChange={this.handleNome}
-              type="text"
-              data-testid="input-player-name"
-              required
+            <input value={this.state.name} onChange={this.handleNome}
+              type="text" data-testid="input-player-name" required
             />
           </label>
-        </div>
-        <div>
           <button
-            disabled={(!this.state.gravatarEmail || !this.state.name)}
-            id="btn-play"
-            data-testid="btn-play"
+            disabled={(!this.state.gravatarEmail || !this.state.name)} id="btn-play" data-testid="btn-play"
             onClick={(event) => {event.preventDefault()
               getLogin1(this.state.gravatarEmail, this.state.name)
               fetchData1()
               getToken()
               this.storeToken()}}
-          >
-            JOGAR!
+          >JOGAR!
           </button>
-        </div>
-        <div>
           <Link to="/configucao" data-testid="btn-settings">Cofigurações</Link>
-        </div>
       </form>
     );
   }
