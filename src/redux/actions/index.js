@@ -10,5 +10,5 @@ export function getData(data) {
 }
 
 export function fetchData() {
-  return (dispatch) => getToken().then((data) => dispatch(getData(data)))  
+  return (dispatch) => getToken().then((data) => dispatch(getData(data)))
 }
