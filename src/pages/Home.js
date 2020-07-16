@@ -79,3 +79,6 @@ const maDispacthToProps = (dispatch) => ({
 
 
 export default connect(null, maDispacthToProps)(HomePage);
+
+// export default connect(null, {getLogin, fetchData})(HomePage);
+
