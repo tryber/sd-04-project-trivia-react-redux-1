@@ -1,7 +1,7 @@
 import { GET_LOGIN, GET_DATA } from '../actions/actionTypes';
 
 const initialState = {
-  data:[],
+  data: [],
   login: {
     gravatarEmail: '',
     name: '',
@@ -20,10 +20,10 @@ export const reducer = (state = initialState, action) => {
         },
       };
     case GET_DATA:
-      return{
+      return {
         ...state,
         data: action.data,
-      }
+      };
     default:
       return state;
   }
