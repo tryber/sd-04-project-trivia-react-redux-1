@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getLogin } from '../redux/actions/index';
+import { getLogin, fetchData } from '../redux/actions/index';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -27,8 +27,7 @@ class HomePage extends React.Component {
   };
 
   render() {
-    const { getLogin1, name } = this.props;
-    console.log(name)
+    const { getLogin1, fetchData1 } = this.props;
     return (
       <form>
         <div>
@@ -59,7 +58,8 @@ class HomePage extends React.Component {
           <button
             data-testid="btn-play"
             onClick={(event) => {event.preventDefault()
-              getLogin1(this.state.gravatarEmail, this.state.name)}}
+              getLogin1(this.state.gravatarEmail, this.state.name)
+              fetchData1()}}
           >
             JOGAR!
           </button>
@@ -74,10 +74,8 @@ class HomePage extends React.Component {
 
 const maDispacthToProps = (dispatch) => ({
   getLogin1: (email, name) => dispatch(getLogin(email, name)),
+  fetchData1: () => dispatch(fetchData()),
 });
 
-// const mapStateToProps = (state) => ({
-//   name: state.reducer.login.name,
-// })
 
 export default connect(null, maDispacthToProps)(HomePage);
