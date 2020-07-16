@@ -1,10 +1,11 @@
-const getToken = () =>
+export const getToken = () =>
   fetch('https://opentdb.com/api_token.php?command=request')
     .then((response) => response.json())
-    .then((data) =>
-      fetch(`https://opentdb.com/api.php?amount=5&token=${data.token}`)
-        .then((response) => response.json())
-        .then((questions) => questions.results),
-    );
+    .then((data) => data.token);
 
-export default getToken;
+export const getQuestions = () => (
+    getToken().then(token => 
+    fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)
+        .then((response) => response.json())
+        .then((questions) => questions.results))
+)
