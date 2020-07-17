@@ -17,9 +17,13 @@ class HomePage extends React.Component {
     this.storeToken = this.storeToken.bind(this);
   }
   
-  storeToken = () => {
-    getToken().then(token => localStorage.token = token)
-  }
+  storeToken = () => 
+    getToken().then(token => {
+      console.log('homepage', token)
+       this.props.fetchData1(token);
+       localStorage.setItem('token', token);
+    });  
+  
 
   handleEmail = (event) => {
     this.setState({
@@ -34,7 +38,7 @@ class HomePage extends React.Component {
   };
 
   render() {
-    const { getLogin1, fetchData1 } = this.props;
+    const { getLogin1 } = this.props;
     return (
       <form>
           <label>
@@ -49,15 +53,14 @@ class HomePage extends React.Component {
               type="text" data-testid="input-player-name" required
             />
           </label>
-          <button
-            disabled={(!this.state.gravatarEmail || !this.state.name)} id="btn-play" data-testid="btn-play"
-            onClick={(event) => {event.preventDefault()
-              getLogin1(this.state.gravatarEmail, this.state.name)
-              fetchData1()
-              getToken()
-              this.storeToken()}}
-          >JOGAR!
-          </button>
+          <Link>
+            <button
+              disabled={(!this.state.gravatarEmail || !this.state.name)} id="btn-play" data-testid="btn-play"
+              onClick={() => {getLogin1(this.state.gravatarEmail, this.state.name)
+                this.storeToken()}}
+            >JOGAR!
+            </button>
+          </Link>
           <Link to="/configucao" data-testid="btn-settings">Cofigurações</Link>
       </form>
     );
@@ -66,7 +69,7 @@ class HomePage extends React.Component {
 
 const maDispacthToProps = (dispatch) => ({
   getLogin1: (email, name) => dispatch(getLogin(email, name)),
-  fetchData1: () => dispatch(fetchData()),
+  fetchData1: (token) => dispatch(fetchData(token)),
 });
 
 
