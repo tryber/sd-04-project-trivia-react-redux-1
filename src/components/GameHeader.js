@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { shuffleAnswers } from '../service';
+import md5 from 'crypto-js/md5';
 
 const GameHeader = (props) => (
   <header>
     <div>
-      <img data-testid="header-profile-picture" src="" alt="img jogador" />
+      <img
+        data-testid="header-profile-picture"
+        src={`https://www.gravatar.com/avatar/${md5(props.email).toString()}`}
+        alt="img jogador"
+      />
     </div>
     <div>
-      <span data-testid="header-player-name">Jogador1: {name}</span>
+      <span data-testid="header-player-name">Jogador1: {props.name}</span>
     </div>
     <div>
       <span data-testid="header-score"></span>
@@ -16,8 +20,9 @@ const GameHeader = (props) => (
   </header>
 );
 
-const mapStateToProps = (state) {
-  
-}
+const mapStateToProps = (state) => ({
+  email: state.login.gravatarEmail,
+  name: state.login.name,
+});
 
-export default connect()(GameHeader)
+export default connect(mapStateToProps)(GameHeader);
