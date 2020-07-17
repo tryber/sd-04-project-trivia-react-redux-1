@@ -9,6 +9,6 @@ export function getData(data) {
   return { type: GET_DATA, data }
 }
 
-export function fetchData() {
-  return (dispatch) => getQuestions().then((data) => dispatch(getData(data)))
+export function fetchData(token) {
+  return (dispatch) => getQuestions(token).then((data) => dispatch(getData(data)))
 }
