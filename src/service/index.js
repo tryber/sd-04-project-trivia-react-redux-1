@@ -3,8 +3,22 @@ export const getToken = () =>
     .then((response) => response.json())
     .then((data) => data.token);
 
-export const getQuestions = (token) => (
-    fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)
-        .then((response) => response.json())
-        .then((questions) => questions.results))
+export const getQuestions = (token) =>
+  fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)
+    .then((response) => response.json())
+    .then((questions) => questions.results);
 
+export const shuffleAnswers = (correct, wrongs) => {
+  const allAnswers = [...wrongs];
+  allAnswers.push(correct);
+  var m = allAnswers.length,
+    t, //último elemento
+    i; //index aleatório dos elementos restantes
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = allAnswers[m];
+    allAnswers[m] = allAnswers[i];
+    allAnswers[i] = t;
+  }
+  return allAnswers;
+};
