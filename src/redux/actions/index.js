@@ -10,7 +10,5 @@ export function getData(data) {
 }
 
 export function fetchData(token) {
-  console.log('token', token)
-  getQuestions(token).then(data => console.log(data))
   return (dispatch) => getQuestions(token).then((data) => dispatch(getData(data)))
 }
