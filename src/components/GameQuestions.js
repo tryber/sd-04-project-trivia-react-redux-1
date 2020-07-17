@@ -7,7 +7,7 @@ const GameQuestions = (props) => {
   let questionsIndex = 0;
   return (
     <div>
-      <div>q
+      <div>
         <h2 data-testid="question-category">{props.questionCategory}</h2>
       </div>
       <div>

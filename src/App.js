@@ -5,6 +5,7 @@ import './App.css';
 import Configuracao from './pages/Configuracao';
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
+import Feedback from './pages/Feedback';
 
 export default class App extends React.Component {
   render() {
@@ -19,8 +20,8 @@ export default class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/configucao" component={Configuracao} />
           <Route path="/gamePage" component={GamePage} />
-          {/* <Route path="/feedback" component={Feedback} />
-          <Route path="/ranking" component={Ranking} /> */}
+          <Route path="/feedback" component={Feedback} />
+          {/* <Route path="/ranking" component={Ranking} /> */}
         </Switch>
       
       </BrowserRouter>

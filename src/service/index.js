@@ -11,7 +11,7 @@ export const getQuestions = (token) =>
 export const shuffleAnswers = (correct, wrongs) => {
   const allAnswers = [...wrongs];
   allAnswers.push(correct);
-  var m = allAnswers.length,
+  let m = allAnswers.length,
     t, //último elemento
     i; //index aleatório dos elementos restantes
   while (m) {

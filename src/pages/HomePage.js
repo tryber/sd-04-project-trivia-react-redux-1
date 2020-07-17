@@ -40,37 +40,24 @@ class HomePage extends React.Component {
     const { getLogin1 } = this.props;
     return (
       <form>
-        <label>
-          Email do Gravatar:
+        <label>Email do Gravatar:
           <input
-            value={this.state.gravatarEmail}
-            onChange={this.handleEmail}
-            type="email"
-            data-testid="input-gravatar-email"
-            required
+            value={this.state.gravatarEmail} onChange={this.handleEmail} type="email"
+            data-testid="input-gravatar-email" required
           />
         </label>
-        <label>
-          Nome do Jogador:
+        <label>Nome do Jogador:
           <input
-            value={this.state.name}
-            onChange={this.handleNome}
-            type="text"
-            data-testid="input-player-name"
-            required
+            value={this.state.name} onChange={this.handleNome} type="text"
+            data-testid="input-player-name" required
           />
         </label>
         <Link to="/gamePage">
           <button
-            disabled={!this.state.gravatarEmail || !this.state.name}
-            id="btn-play"
-            data-testid="btn-play"
+            disabled={!this.state.gravatarEmail || !this.state.name} data-testid="btn-play"
             onClick={() => {
-              getLogin1(this.state.gravatarEmail, this.state.name);
-              this.storeToken();
-            }}
-          >
-            JOGAR!
+              getLogin1(this.state.gravatarEmail, this.state.name); this.storeToken();
+            }}>JOGAR!
           </button>
         </Link>
         <Link to="/configucao" data-testid="btn-settings">
