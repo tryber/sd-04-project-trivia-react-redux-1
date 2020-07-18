@@ -9,19 +9,19 @@ class Configuracao extends React.Component {
     this.state = {
       categorias: [],
     }
-    this.sel = this.sel.bind(this);
+    // this.sel = this.sel.bind(this);
   }
 
-  componentDidMount() {
-    const ad = getCategorys().then(data => console.log(data.map(e => e.name)));
-    this.setState({ categorias: ad })
-    console.log('test', this.state.categorias)
-  }
+  // componentDidMount() {
+  //   const ad = getCategorys().then(data => console.log(data.map(e => e.name)));
+  //   this.setState({ categorias: ad })
+  //   console.log('test', this.state.categorias)
+  // }
 
-  sel = () => {
-    const { categorias } = this.state;
-    return !categorias ? <option>loading</option> : categorias.map((cat) => <option>{cat}</option>)
-  }  
+  // sel = () => {
+  //   const { categorias } = this.state;
+  //   return !categorias ? <option>loading</option> : categorias.map((cat) => <option>{cat}</option>)
+  // }  
 
   render() {
     // const { categorias } = this.state
@@ -29,7 +29,7 @@ class Configuracao extends React.Component {
     <form>
       <h2 data-testid="settings-title">Configurações</h2>
       <select>
-      {this.sel()} 
+      {/* {this.sel()}  */}
       </select>
     </form>
   );

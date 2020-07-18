@@ -23,8 +23,7 @@ export const shuffleAnswers = (correct, wrongs) => {
   return allAnswers;
 };
 
-export const getCategorys = () => 
+export const getCategorys = () =>
   fetch('https://opentdb.com/api_category.php')
   .then((response) => response.json())
-  .then((data) => data.trivia_categories)
-
+  .then((data) => data.trivia_categories);
