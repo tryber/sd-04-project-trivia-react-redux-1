@@ -12,7 +12,7 @@ export default class App extends React.Component {
       <BrowserRouter>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />            
+            <img src={logo} className="App-logo" alt="logo" />
           </header>
         </div>
         <Switch>
@@ -22,7 +22,6 @@ export default class App extends React.Component {
           {/* <Route path="/feedback" component={Feedback} />
           <Route path="/ranking" component={Ranking} /> */}
         </Switch>
-      
       </BrowserRouter>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { shuffleAnswers } from '../service';
 import { nextQuestion, handleScore } from '../redux/actions';
 
@@ -16,6 +17,7 @@ class GameQuestions extends React.Component {
     this.handleAnswer = this.handleAnswer.bind(this);
     this.handleNextQuestion = this.handleNextQuestion.bind(this);
     this.handleTimer = this.handleTimer.bind(this);
+    this.handleTimeOut = this.handleTimeOut.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -34,11 +36,17 @@ class GameQuestions extends React.Component {
           }));
         }
         if (this.state.timeLeft === 0) {
-          clearInterval(this.timer);
-          this.handleNextQuestion();
+          this.handleTimeOut();
         }
       }, 1000);
     }
+  }
+
+  handleTimeOut() {
+    clearInterval(this.timer);
+    this.setState({
+      answered: true,
+    });
   }
 
   handleAnswer(answer) {
@@ -77,6 +85,7 @@ class GameQuestions extends React.Component {
         return (
           <li key={question}>
             <button
+              type="button"
               disabled={this.state.answered}
               onClick={() => this.handleAnswer(true)}
               className={this.state.answered ? 'correct-answer' : 'answer'}
@@ -90,6 +99,7 @@ class GameQuestions extends React.Component {
       return (
         <li key={question}>
           <button
+            type="button"
             disabled={this.state.answered}
             onClick={() => this.handleAnswer(false)}
             className={this.state.answered ? 'wrong-answer' : 'answer'}
@@ -101,6 +111,7 @@ class GameQuestions extends React.Component {
       );
     });
   }
+
   render() {
     return (
       <div>
@@ -108,18 +119,28 @@ class GameQuestions extends React.Component {
           <h2 data-testid="question-category">{this.props.questionCategory}</h2>
         </div>
         <div>
-          <h2>{this.state.timeLeft}</h2>
-        </div>
-        <div>
           <h1 data-testid="question-text">{this.props.questionText}</h1>
           <ul>
             {this.props.questionCategory ? (
-              this.renderQuestions()
+              <div>
+                {this.renderQuestions()}
+                <div>
+                  <h2>Tempo: {this.state.timeLeft}</h2>
+                </div>
+                {this.props.index === this.props.questionsNumber - 1 ? (
+                  <Link to="/feedback">
+                    <button type="button">Ver resultados</button>
+                  </Link>
+                ) : (
+                  <button type="button" onClick={this.handleNextQuestion}>
+                    Próxima
+                  </button>
+                )}
+              </div>
             ) : (
               <div>Loading...</div>
             )}
           </ul>
-          <button onClick={this.handleNextQuestion}>Próxima</button>
         </div>
       </div>
     );
@@ -127,18 +148,21 @@ class GameQuestions extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  if (state.receivedData) {
+  if (state.data.receivedData) {
     const index = state.trivia.question;
-    const data = state.data[index];
+    const data = state.data.questionsData;
+    const questionData = data[index];
     return {
-      questionCategory: data.category,
-      questionText: data.question,
-      incorretAnswers: data.incorrect_answers,
-      correctAnswer: data.correct_answer,
-      difficulty: data.difficulty,
+      questionCategory: questionData.category,
+      questionText: questionData.question,
+      incorretAnswers: questionData.incorrect_answers,
+      correctAnswer: questionData.correct_answer,
+      difficulty: questionData.difficulty,
+      index,
+      questionsNumber: data.length,
     };
   }
-  return { receivedData: state.receivedData };
+  return { receivedData: state.data.receivedData };
 };
 export default connect(mapStateToProps, { nextQuestion, handleScore })(
   GameQuestions,
