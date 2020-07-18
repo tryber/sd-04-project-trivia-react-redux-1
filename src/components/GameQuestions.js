@@ -132,7 +132,7 @@ class GameQuestions extends React.Component {
                     <button type="button">Ver resultados</button>
                   </Link>
                 ) : (
-                  <button type="button" onClick={this.handleNextQuestion}>
+                  <button type="button" data-testid="btn-next" onClick={this.handleNextQuestion}>
                     Próxima
                   </button>
                 )}

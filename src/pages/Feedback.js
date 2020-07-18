@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GameHeader from '../components/GameHeader';
 
-// this.valorResposta = this.valorResposta.bind(this);
 
 const Feedback = ({ score, assertions }) => {
   const valorResposta = () => {
