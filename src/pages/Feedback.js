@@ -46,6 +46,7 @@ const mapStateToProps = (state) => {
       assertions: state.trivia.assertions,
     };
   }
+  return { receivedData: state.data.receivedData };
 };
 
 export default connect(mapStateToProps)(Feedback);

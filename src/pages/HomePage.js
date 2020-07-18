@@ -20,13 +20,16 @@ class HomePage extends React.Component {
   componentDidMount() {
     getCategorys().then(data => console.log(data.map(e => e.name)))
   }
-  storeToken = () =>
+
+  storeToken() {
+    return (
     getToken().then((token) => {
       console.log('homepage', token);
       this.props.fetchData1(token);
       localStorage.setItem('token', token);
-    });
-  
+    })
+  );
+}
 
   handleEmail(event) {
     this.setState({

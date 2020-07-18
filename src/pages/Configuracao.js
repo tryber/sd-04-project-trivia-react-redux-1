@@ -20,8 +20,8 @@ class Configuracao extends React.Component {
 
   // sel = () => {
   //   const { categorias } = this.state;
-  //   return !categorias ? <option>loading</option> : 
-  //categorias.map((cat) => <option>{cat}</option>)
+  //   return !categorias ? <option>loading</option> :
+  //   categorias.map((cat) => <option>{cat}</option>)
   // }
   render() {
     // const { categorias } = this.state
