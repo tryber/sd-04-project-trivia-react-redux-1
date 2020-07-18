@@ -129,7 +129,7 @@ class GameQuestions extends React.Component {
                 </div>
                 {this.props.index === this.props.questionsNumber - 1 ? (
                   <Link to="/feedback">
-                    <button type="button">Ver resultados</button>
+                    <button data-testid="btn-next" type="button">Ver resultados</button>
                   </Link>
                 ) : (
                   <button type="button" data-testid="btn-next" onClick={this.handleNextQuestion}>
