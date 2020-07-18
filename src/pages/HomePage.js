@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getLogin, fetchData } from '../redux/actions/index';
-import { getToken } from '../service';
+import { getToken, getCategorys } from '../service';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -17,6 +17,9 @@ class HomePage extends React.Component {
     this.storeToken = this.storeToken.bind(this);
   }
 
+  componentDidMount() {
+    getCategorys().then(data => console.log(data.map(e => e.name)))
+  }
   storeToken = () =>
     getToken().then((token) => {
       console.log('homepage', token);
