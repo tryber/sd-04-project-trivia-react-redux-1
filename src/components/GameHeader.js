@@ -15,7 +15,7 @@ const GameHeader = (props) => (
       <span data-testid="header-player-name">Jogador1: {props.name}</span>
     </div>
     <div>
-      <span data-testid="header-score"></span>
+      <span data-testid="header-score">{props.score}</span>
     </div>
   </header>
 );
@@ -23,6 +23,7 @@ const GameHeader = (props) => (
 const mapStateToProps = (state) => ({
   email: state.login.gravatarEmail,
   name: state.login.name,
+  score: state.trivia.score,
 });
 
 export default connect(mapStateToProps)(GameHeader);
