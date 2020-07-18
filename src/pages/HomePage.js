@@ -26,18 +26,19 @@ class HomePage extends React.Component {
       this.props.fetchData1(token);
       localStorage.setItem('token', token);
     });
+  
 
-  handleEmail = (event) => {
+  handleEmail(event) {
     this.setState({
       gravatarEmail: event.target.value,
     });
-  };
+  }
 
-  handleNome = (event) => {
+  handleNome(event) {
     this.setState({
       name: event.target.value,
     });
-  };
+  }
 
   render() {
     const { getLogin1 } = this.props;

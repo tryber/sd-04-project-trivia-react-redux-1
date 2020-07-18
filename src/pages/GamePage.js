@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { shuffleAnswers } from '../service';
 import GameHeader from '../components/GameHeader';
 import GameQuestions from '../components/GameQuestions';
 

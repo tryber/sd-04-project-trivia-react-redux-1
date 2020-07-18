@@ -4,18 +4,23 @@ import { connect } from 'react-redux';
 import GameHeader from '../components/GameHeader';
 
 // this.valorResposta = this.valorResposta.bind(this);
-// valorResposta = () => {
-//   if (valorResposta < 3) <h2>Podia ser melhor...</h2>
-//   if (valorResposta >= 3) <h2>Mandou bem!</h2>
-// }
-const Feedback = ({ name }) => {
+
+const Feedback = ({ score, assertions }) => {
+  const valorResposta = () =>{
+    let text = '';
+    if (assertions < 3)  text = 'Podia ser melhor...';
+    if (assertions >= 3)  text = 'Mandou bem!';
+    return text
+  }
   return (
     <div>
       <GameHeader />
-      <div data-testid="feedback-text">{/* this.valorResposta() */}</div>
+    <div data-testid="feedback-text">
+      <h2>{valorResposta()}</h2>
+    </div>
       <div>
-        <span data-testid="feedback-total-question">${} Acertos</span>
-        <span data-testid="feedback-total-score">${} Pontos</span>
+        <span data-testid="feedback-total-question">{assertions} Acertos</span>
+        <span data-testid="feedback-total-score">{score} Pontos</span>
       </div>
 
       <Link data-testid="btn-play-again" to="/">
@@ -30,9 +35,10 @@ const Feedback = ({ name }) => {
 }
 
 const mapStateToProps = (state) => {
-  if (state.login) {
+  if (state.data.receivedData) {
     return {
-      name: state.login.name,
+      score: state.trivia.score,
+      assertions: state.trivia.assertions,
     };
   }
 };
