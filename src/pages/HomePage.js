@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getLogin, fetchData } from '../redux/actions/index';
-import { getToken, getCategorys } from '../service';
+import { getToken } from '../service';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -17,9 +17,9 @@ class HomePage extends React.Component {
     this.storeToken = this.storeToken.bind(this);
   }
 
-  componentDidMount() {
-    getCategorys().then(data => console.log(data.map(e => e.name)))
-  }
+  // componentDidMount() {
+  //   getCategorys().then(data => console.log(data.map(e => e.name)))
+  // }
 
   storeToken() {
     return (
@@ -28,8 +28,8 @@ class HomePage extends React.Component {
       this.props.fetchData1(token);
       localStorage.setItem('token', token);
     })
-  );
-}
+    );
+  }
 
   handleEmail(event) {
     this.setState({
@@ -64,7 +64,8 @@ class HomePage extends React.Component {
             disabled={!this.state.gravatarEmail || !this.state.name} data-testid="btn-play"
             onClick={() => {
               getLogin1(this.state.gravatarEmail, this.state.name); this.storeToken();
-            }}>JOGAR!
+            }}
+          >JOGAR!
           </button>
         </Link>
         <Link to="/configucao" data-testid="btn-settings">
