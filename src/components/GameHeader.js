@@ -12,10 +12,10 @@ const GameHeader = (props) => (
       />
     </div>
     <div>
-      <span data-testid="header-player-name">Jogador1: {props.name}</span>
+      <span data-testid="header-player-name">Jogador: {props.name}</span>
     </div>
     <div>
-      <span data-testid="header-score">{props.score}</span>
+      <span data-testid="header-score">Pontuação: {props.score}</span>
     </div>
   </header>
 );

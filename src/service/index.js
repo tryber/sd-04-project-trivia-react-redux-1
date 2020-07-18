@@ -11,9 +11,9 @@ export const getQuestions = (token) =>
 export const shuffleAnswers = (correct, wrongs) => {
   const allAnswers = [...wrongs];
   allAnswers.push(correct);
-  var m = allAnswers.length,
-    t, //último elemento
-    i; //index aleatório dos elementos restantes
+  let m = allAnswers.length;
+  let t; //último elemento
+  let i; //index aleatório dos elementos restantes
   while (m) {
     i = Math.floor(Math.random() * m--);
     t = allAnswers[m];
@@ -22,3 +22,8 @@ export const shuffleAnswers = (correct, wrongs) => {
   }
   return allAnswers;
 };
+
+export const getCategorys = () =>
+  fetch('https://opentdb.com/api_category.php')
+  .then((response) => response.json())
+  .then((data) => data.trivia_categories);

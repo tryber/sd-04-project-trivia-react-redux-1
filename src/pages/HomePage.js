@@ -17,12 +17,18 @@ class HomePage extends React.Component {
     this.storeToken = this.storeToken.bind(this);
   }
 
+  // componentDidMount() {
+  //   getCategorys().then(data => console.log(data.map(e => e.name)))
+  // }
+
   storeToken() {
+    return (
     getToken().then((token) => {
       console.log('homepage', token);
       this.props.fetchData1(token);
       localStorage.setItem('token', token);
-    });
+    })
+    );
   }
 
   handleEmail(event) {
@@ -41,38 +47,25 @@ class HomePage extends React.Component {
     const { getLogin1 } = this.props;
     return (
       <form>
-        <label>
-          Email do Gravatar:
+        <label>Email do Gravatar:
           <input
-            value={this.state.gravatarEmail}
-            onChange={this.handleEmail}
-            type="email"
-            data-testid="input-gravatar-email"
-            required
+            value={this.state.gravatarEmail} onChange={this.handleEmail} type="email"
+            data-testid="input-gravatar-email" required
           />
         </label>
-        <label>
-          Nome do Jogador:
+        <label>Nome do Jogador:
           <input
-            value={this.state.name}
-            onChange={this.handleNome}
-            type="text"
-            data-testid="input-player-name"
-            required
+            value={this.state.name} onChange={this.handleNome} type="text"
+            data-testid="input-player-name" required
           />
         </label>
         <Link to="/gamePage">
           <button
-            type="button"
-            disabled={!this.state.gravatarEmail || !this.state.name}
-            id="btn-play"
-            data-testid="btn-play"
+            disabled={!this.state.gravatarEmail || !this.state.name} data-testid="btn-play"
             onClick={() => {
-              getLogin1(this.state.gravatarEmail, this.state.name);
-              this.storeToken();
+              getLogin1(this.state.gravatarEmail, this.state.name); this.storeToken();
             }}
-          >
-            JOGAR!
+          >JOGAR!
           </button>
         </Link>
         <Link to="/configucao" data-testid="btn-settings">
