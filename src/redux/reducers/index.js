@@ -1,30 +1,13 @@
-import { GET_LOGIN, GET_DATA } from '../actions/actionTypes';
+import { combineReducers } from 'redux';
 
-const initialState = {
-  data: [],
-  login: {
-    gravatarEmail: '',
-    name: '',
-  },
-};
+import triviaReducer from './trivia';
+import loginReducer from './login';
+import dataReducer from './data';
 
-export const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_LOGIN:
-      return {
-        ...state,
-        data: action.data,
-        login: {
-          gravatarEmail: action.email,
-          name: action.name,
-        },
-      };
-    case GET_DATA:
-      return {
-        ...state,
-        data: action.data,
-      };
-    default:
-      return state;
-  }
-};
+const reducer = combineReducers({
+  trivia: triviaReducer,
+  login: loginReducer,
+  data: dataReducer,
+});
+
+export default reducer;

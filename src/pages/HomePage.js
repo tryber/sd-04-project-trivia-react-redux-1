@@ -17,24 +17,25 @@ class HomePage extends React.Component {
     this.storeToken = this.storeToken.bind(this);
   }
 
-  storeToken = () =>
+  storeToken() {
     getToken().then((token) => {
       console.log('homepage', token);
       this.props.fetchData1(token);
       localStorage.setItem('token', token);
     });
+  }
 
-  handleEmail = (event) => {
+  handleEmail(event) {
     this.setState({
       gravatarEmail: event.target.value,
     });
-  };
+  }
 
-  handleNome = (event) => {
+  handleNome(event) {
     this.setState({
       name: event.target.value,
     });
-  };
+  }
 
   render() {
     const { getLogin1 } = this.props;
@@ -62,6 +63,7 @@ class HomePage extends React.Component {
         </label>
         <Link to="/gamePage">
           <button
+            type="button"
             disabled={!this.state.gravatarEmail || !this.state.name}
             id="btn-play"
             data-testid="btn-play"
