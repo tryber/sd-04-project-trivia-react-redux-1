@@ -1,4 +1,8 @@
-import { NEXT_QUESTION, HANDLE_SCORE } from '../actions/actionTypes';
+import {
+  NEXT_QUESTION,
+  HANDLE_SCORE,
+  START_TRIVIA,
+} from '../actions/actionTypes';
 
 const initialState = {
   question: 0,
@@ -10,6 +14,12 @@ const triviaReducer = (state = initialState, action) => {
   const d = action.difficulty;
   const dValue = d === 'hard' ? 3 : d === 'medium' ? 2 : 1;
   switch (action.type) {
+    case START_TRIVIA:
+      return {
+        question: 0,
+        score: 0,
+        assertions: 0,
+      };
     case NEXT_QUESTION:
       return {
         ...state,
