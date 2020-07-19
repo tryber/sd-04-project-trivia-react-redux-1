@@ -21,7 +21,7 @@ export default class App extends React.Component {
           <Route path="/configucao" component={Configuracao} />
           <Route path="/gamePage" component={GamePage} />
           <Route path="/feedback" component={Feedback} />
-          {/* <Route path="/ranking" component={Ranking} /> */}
+          <Route path="/ranking" component={Ranking} />
         </Switch>
       </BrowserRouter>
     );
