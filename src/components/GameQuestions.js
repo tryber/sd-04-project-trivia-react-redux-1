@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import md5 from 'crypto-js/md5';
 import { shuffleAnswers } from '../service';
 import { nextQuestion, handleScore } from '../redux/actions';
 
@@ -18,6 +19,7 @@ class GameQuestions extends React.Component {
     this.handleNextQuestion = this.handleNextQuestion.bind(this);
     this.handleTimer = this.handleTimer.bind(this);
     this.handleTimeOut = this.handleTimeOut.bind(this);
+    this.handleResults = this.handleResults.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -77,6 +79,21 @@ class GameQuestions extends React.Component {
     }));
   }
 
+  handleResults() {
+    const ranking = localStorage.getItem('ranking')
+      ? JSON.parse(localStorage.getItem('ranking'))
+      : [];
+    const personScore = {
+      name: this.props.name,
+      score: this.props.score,
+      picture: `https://www.gravatar.com/avatar/${md5(
+        this.props.gravatarEmail,
+      ).toString()}`,
+    };
+    ranking.push(personScore);
+    localStorage.setItem('ranking', JSON.stringify(ranking));
+  }
+
   renderQuestions() {
     let questionsIndex = 0;
     return this.state.shuffledAnswers.map((question) => {
@@ -129,10 +146,20 @@ class GameQuestions extends React.Component {
                 </div>
                 {this.props.index === this.props.questionsNumber - 1 ? (
                   <Link to="/feedback">
-                    <button data-testid="btn-next" type="button">Ver resultados</button>
+                    <button
+                      data-testid="btn-next"
+                      onClick={this.handleResults}
+                      type="button"
+                    >
+                      Ver resultados
+                    </button>
                   </Link>
                 ) : (
-                  <button type="button" data-testid="btn-next" onClick={this.handleNextQuestion}>
+                  <button
+                    type="button"
+                    data-testid="btn-next"
+                    onClick={this.handleNextQuestion}
+                  >
                     Próxima
                   </button>
                 )}
@@ -160,6 +187,9 @@ const mapStateToProps = (state) => {
       difficulty: questionData.difficulty,
       index,
       questionsNumber: data.length,
+      score: state.trivia.score,
+      gravatarEmail: state.login.gravatarEmail,
+      name: state.login.name,
     };
   }
   return { receivedData: state.data.receivedData };
