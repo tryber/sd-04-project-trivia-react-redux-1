@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -80,14 +81,15 @@ class GameQuestions extends React.Component {
   }
 
   handleResults() {
+    const { name, score, gravatarEmail } = this.props;
     const ranking = localStorage.getItem('ranking')
       ? JSON.parse(localStorage.getItem('ranking'))
       : [];
     const personScore = {
-      name: this.props.name,
-      score: this.props.score,
+      name,
+      score,
       picture: `https://www.gravatar.com/avatar/${md5(
-        this.props.gravatarEmail,
+        gravatarEmail,
       ).toString()}`,
     };
     ranking.push(personScore);
@@ -173,6 +175,16 @@ class GameQuestions extends React.Component {
     );
   }
 }
+
+GameQuestions.propTypes = {
+  gravatarEmail: PropTypes.string,
+  score: PropTypes.number,
+};
+
+GameQuestions.defaultProps = {
+  gravatarEmail: '',
+  score: 0,
+};
 
 const mapStateToProps = (state) => {
   if (state.data.receivedData) {
