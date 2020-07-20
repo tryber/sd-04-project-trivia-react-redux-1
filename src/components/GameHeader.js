@@ -15,7 +15,8 @@ const GameHeader = (props) => (
       <span data-testid="header-player-name">Jogador: {props.name}</span>
     </div>
     <div>
-      <span data-testid="header-score">Pontuação: {props.score}</span>
+      <span>Pontuação :</span>
+      <span data-testid="header-score">{props.score}</span>
     </div>
   </header>
 );

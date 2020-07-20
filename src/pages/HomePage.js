@@ -76,9 +76,9 @@ class HomePage extends React.Component {
   }
 }
 
-const maDispacthToProps = (dispatch) => ({
+const mapDispacthToProps = (dispatch) => ({
   getLogin1: (email, name) => dispatch(getLogin(email, name)),
   fetchData1: (token) => dispatch(fetchData(token)),
 });
 
-export default connect(null, maDispacthToProps)(HomePage);
+export default connect(null, mapDispacthToProps)(HomePage);
