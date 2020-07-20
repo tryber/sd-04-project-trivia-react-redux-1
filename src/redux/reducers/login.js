@@ -3,6 +3,7 @@ import { GET_LOGIN } from '../actions/actionTypes';
 const initialState = {
   gravatarEmail: '',
   name: '',
+  token: '',
 };
 
 const loginReducer = (state = initialState, action) => {
