@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -82,7 +82,7 @@ HomePage.propTypes = {
   fetchData1: PropTypes.func.isRequired,
   getLogin1: PropTypes.func.isRequired,
   resetTrivia1: PropTypes.func.isRequired,
-}
+};
 
 const mapDispacthToProps = (dispatch) => ({
   getLogin1: (email, name) => dispatch(getLogin(email, name)),
