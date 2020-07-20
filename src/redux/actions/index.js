@@ -4,6 +4,7 @@ import {
   NEXT_QUESTION,
   REQUEST_DATA,
   HANDLE_SCORE,
+  RESET_TRIVIA,
 } from './actionTypes';
 import { getQuestions } from '../../service';
 
@@ -36,5 +37,11 @@ export function handleScore(answer, timeLeft, difficulty) {
     answer,
     timeLeft,
     difficulty,
+  };
+}
+
+export function resetTrivia() {
+  return {
+    type: RESET_TRIVIA,
   };
 }

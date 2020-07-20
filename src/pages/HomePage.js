@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getLogin, fetchData } from '../redux/actions/index';
+import { getLogin, fetchData, resetTrivia } from '../redux/actions/index';
 import { getToken } from '../service';
 
 class HomePage extends React.Component {
@@ -17,9 +17,10 @@ class HomePage extends React.Component {
     this.storeToken = this.storeToken.bind(this);
   }
 
-  // componentDidMount() {
+  componentDidMount() {
+    this.props.resetTrivia1();
   //   getCategorys().then(data => console.log(data.map(e => e.name)))
-  // }
+  }
 
   storeToken() {
     return (
@@ -79,6 +80,7 @@ class HomePage extends React.Component {
 const maDispacthToProps = (dispatch) => ({
   getLogin1: (email, name) => dispatch(getLogin(email, name)),
   fetchData1: (token) => dispatch(fetchData(token)),
+  resetTrivia1: () => dispatch(resetTrivia()),
 });
 
 export default connect(null, maDispacthToProps)(HomePage);
