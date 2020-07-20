@@ -12,7 +12,8 @@ const GameHeader = (props) => (
       />
     </div>
     <div>
-      <span data-testid="header-player-name">Jogador: {props.name}</span>
+      <span>Jogador :</span>
+      <span data-testid="header-player-name">{props.name}</span>
     </div>
     <div>
       <span>Pontuação :</span>
