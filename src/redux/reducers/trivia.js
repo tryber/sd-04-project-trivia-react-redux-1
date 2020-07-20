@@ -1,4 +1,7 @@
-import { NEXT_QUESTION, HANDLE_SCORE } from '../actions/actionTypes';
+import {
+  NEXT_QUESTION,
+  HANDLE_SCORE,
+} from '../actions/actionTypes';
 
 const initialState = {
   question: 0,
