@@ -1,28 +1,25 @@
 import React from 'react';
-import HomePage from './HomePage'
 import { Link } from 'react-router-dom';
-import GameHeader from '../components/GameHeader'
 
-const Ranking = ({ name, score }) => {
-
-  const players = {};
+const Ranking = () => {
+  const players = JSON.parse(localStorage.getItem('ranking'));
+  players.sort((a, b) => {return b.score - a.score});
   
-  state.reduce((players, element => {return players + element}).sort((a, b) => {return b - a}));
-
-  return ( 
-    <div className="App">
-      <GameHeader />
-      <div className="">
-      <img
-        data-testid="header-profile-picture"
-        src={`https://www.gravatar.com/avatar/${md5(props.email).toString()}`}
-        alt="img jogador"
-      />
-      <h2 data-testid="player-name-${index}"> {name} - </h2>
-      <h2 data-testid="player-score-${index}"> {score} pontos </h2>
-      </div>
-      <Link data-testid="btn-go-home" to="/HomePage">Go home</Link>
-      <Button onClick = {() => {HomePage}} data-testid="btn-go-home">Go home</Button>
+  const player = () => {
+    return players.map((element, index) => {
+      return(
+        <li key={index}>
+          <img src={element.picture} alt='foto-perfil' />
+          <p data-testid={`player-name-${index}`}>Jogador: {element.name}</p>
+          <p data-testid={`player-score-${index}`}>Pontos: {element.score}</p>
+        </li>
+      )
+    })
+  }
+  return (
+    <div>
+      <ol>{player()}</ol>
+      <Link data-testid="btn-go-home" to="/">Go home</Link>
     </div>
   )
 }

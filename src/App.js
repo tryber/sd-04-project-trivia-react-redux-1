@@ -6,7 +6,7 @@ import Configuracao from './pages/Configuracao';
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
 import Feedback from './pages/Feedback';
-import Feedback from './pages/Ranking';
+import Ranking from './pages/Ranking';
 
 export default class App extends React.Component {
   render() {
