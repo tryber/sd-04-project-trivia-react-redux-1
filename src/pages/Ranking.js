@@ -8,8 +8,8 @@ const Ranking = () => {
     players.map((element, index) =>
         <li key={`${element.name}-${index}`}>
           <img src={element.picture} alt="foto-perfil" />
-          <p data-testid={`player-name-${index}`}>Jogador: {element.name}</p>
-          <p data-testid={`player-score-${index}`}>Pontos: {element.score}</p>
+          <p data-testid={`player-name-${index}`}>{element.name}</p>
+          <p data-testid={`player-score-${index}`}>{element.score}</p>
         </li>
     );
 
