@@ -4,3 +4,4 @@ export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVED_DATA = 'RECEIVED_DATA';
 export const HANDLE_SCORE = 'HANDLE_SCORE';
+export const RESET_TRIVIA = 'RESET_TRIVIA';
