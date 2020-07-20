@@ -15,6 +15,7 @@ const Ranking = () => {
 
   return (
     <div>
+      <h2 data-testid="ranking-title">Ranking</h2>
       <ol>{player()}</ol>
       <Link data-testid="btn-go-home" to="/">Go home</Link>
     </div>
