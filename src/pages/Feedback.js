@@ -26,7 +26,7 @@ const Feedback = ({ score, assertions }) => {
       <Link data-testid="btn-play-again" to="/">
         JOGAR NOVAMENTE
       </Link>
-      <Link data-testid="btn-ranking" to="">
+      <Link data-testid="btn-ranking" to="/ranking">
         Ver Ranking
       </Link>
     </div>
